@@ -8,9 +8,9 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-        System.getenv().forEach((key, value) -> {
-                System.out.println(key + "=" + value);
-            });
+        //        System.getenv().forEach((key, value) -> {
+        //      System.out.println(key + "=" + value);
+        //  });
 	}
 
 }
