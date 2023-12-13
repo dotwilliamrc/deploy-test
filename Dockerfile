@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-jdk AS build
 COPY . .
 RUN ./mvnw dependency:resolve
-RUN ./mvn package
+RUN ./mvnw package
 
 # Crear una nueva imagen basada en OpenJDK 17
 FROM eclipse-temurin:17-jdk
