@@ -1,15 +1,12 @@
-FROM eclipse-temurin:17-jdk AS build
-
-COPY pom.xml mvnw ./
-COPY .mvn .mvn
+FROM ubuntu:latest AS build
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
 RUN ./mvnw dependency:resolve
-
-COPY src src
-RUN ./mvnw package
+RUN ./mvn package
 
 # Crear una nueva imagen basada en OpenJDK 17
 FROM eclipse-temurin:17-jdk
-
-WORKDIR demo
-COPY --from=build target/*.jar app.jar
+EXPOSE 8080
+COPY --from=build target/spring-deploy-1.0.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
